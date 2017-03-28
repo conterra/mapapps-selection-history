@@ -14,16 +14,11 @@
  * limitations under the License.
  */
 define({
-    bundleName: "MultipleSelection",
-    bundleDescription: "Mit diesem Bundle können Selektionen auf mehreren Layern durchgeführt werden",
-    
-    toolName: "ResultOverview-Tool",
+    bundleName: "Selection History",
+    bundleDescription: "Mit diesem Bundle können durchgeführte Selektionen erneut angezeigt werden",
+    toolName: "SelectionHistory-Tool",
     toolTooltip: "Durchgeführte Selektionen anzeigen",
     showResults: "Zeige Ergebnisse",
     windowTitle: "Durchgeführte Selektionen",
-    emptyLabel: "Bisher wurden keine Selektionen durchgeführt",
-    
-    toolName2: "MultipleSelection-Tool",
-    toolTooltip2: "Mehrere Layer selektieren",
-    windowTitle2: "Mehrere Layer selektieren"   
+    emptyLabel: "Bisher wurden keine Selektionen durchgeführt"    
 });

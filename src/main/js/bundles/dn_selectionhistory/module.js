@@ -13,20 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-define({
-    root: {
-        bundleName: "MultipleSelection",
-        bundleDescription: "With this bundle you can perform selections on multiple layers",
-        
-        toolName: "ResultOverview-Tool",
-        toolTooltip: "show past selections",
-        showResults: "show results",
-        windowTitle: "past selections",
-        emptyLabel: "no selections made yet",
-        
-        toolName2: "MultipleSelection-Tool",
-        toolTooltip2: "multiple layer selection",
-        windowTitle2: "multi selection"
-    },
-    de: true
-});
+define([
+    ".",
+    "./ResultOverviewWidgetFactory",
+    "./ResultOverviewWidget",
+    "./SelectionEventDetector",
+    "ct/tools/Tool"
+], {});

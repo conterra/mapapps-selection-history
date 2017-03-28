@@ -19,15 +19,12 @@ define([
     "dijit/_WidgetBase",
     "dijit/_TemplatedMixin",
     "dijit/_WidgetsInTemplateMixin",
-    "dojo/text!./templates/MultipleSelection.html",
+    "dojo/text!./templates/ResultOverview.html",
     "dijit/layout/BorderContainer",
     "dijit/layout/ContentPane",
     "dijit/form/Button",
     "ct/_Connect",
-    "dijit/form/Select",
-    "ct/ui/controls/dataview/DataViewModel",
-    "ct/store/ComplexMemory",
-    "ct/async"
+    "dijit/form/Select"
 ], function (declare,
         i18n,
         _Widget,
@@ -36,57 +33,48 @@ define([
         templateStringContent,
         BorderContainer,
         Button,
-        ContentPane, _Connect, d_Select, DataViewModel,
-        MemoryStore,
-        ct_async
-        ) {
+        ContentPane, _Connect, d_Select) {
     return declare([_Widget, _TemplatedMixin,
         _WidgetsInTemplateMixin, _Connect], {
         templateString: templateStringContent,
-        baseClass: "MultipleSelectionWidget",
+        baseClass: "ResultOverviewWidget",
         constructor: function () {
-            this.i18n = i18n;            
-            
-            /*this._dataViewStore = new MemoryStore({
-                idProperty: "id",
-                getMetadata: function() {
-                    return {
-                        fields: [
-                            {
-                                "name": "id",
-                                "title": "ID"
-                            },
-                            {
-                                "name": "title",
-                                "title": "Title",
-                                "type": "string"
-                            },
-                            {
-                                "name": "description",
-                                "title": "Description",
-                                "type": "string"
-                            }
-                        ]
-                    };
-                }
-            });*/
+            this.i18n = i18n;
         },
         postCreate: function () {
-            /*var model = this.dataViewModel = new DataViewModel({
-                store: this._dataViewStore
-            });
-            var dataView = this.dataView;
-            dataView.set("model", model);*/
+
+            this._select = new d_Select({
+                name: "selectResult",
+                style: "width: 250px;",
+                maxHeight: "160",
+                autoWidth: false,
+                emptyLabel: i18n.emptyLabel,
+                options: []
+            }, this._selectNode1);
+
             this.inherited(arguments);
         },
         resize: function (dims) {
             this._container.resize(dims);
         },
         onShowResultClick: function () {
-           
+            var index = this._select.get("value");
+            if (index === "")
+                return;
+            this.source._onShowResultClick(index);
         },
         addResult: function (result) {
-            
+            this.source._addResult(result);            
+            var time = result.Timestamp.toLocaleTimeString();
+            var name = result.store.getMetadata().title ? result.store.getMetadata().title : "";
+            var index = this.source.results.length - 1;
+            var option = {label: time + " " + name, value: index};
+            this._select.addOption(option);
+        },
+        clearResults: function(){
+            this._select._setDisplay("");
+            this._select.removeOption(this._select.getOptions());            
+            this.source._clearResults();
         }
     });
 });

@@ -35,10 +35,9 @@ define([
             this.inherited(arguments);
             return this.widget;
         },
-        activate: function () {
+        activate: function () {            
             this.inherited(arguments);
-            var i18n = this._i18n.get();
-            //var properties = this._properties;
+            var i18n = this._i18n.get();            
             var widget = this.widget = new ResultOverviewWidget({
                 source: this,
                 i18n: i18n
@@ -48,29 +47,29 @@ define([
         /*         
          * TODO: attach dataview to resultcenter instead of posting new event
          */
-        postEvent: function (properties) {
+        postEvent: function (properties) {            
             this._eventService.postEvent("ct/selection/SELECTION_END",
-                    {
+                    {                        
                         source: properties.source,
                         store: properties.store,
-                        postedBy: "dn_resultoverview"
+                        postedBy: "dn_selectionhistory"
                     }
             );
-        },        
-        _addResult: function (result) {
+        },
+        _addResult: function (result){            
             result.extent = this._mapState.getExtent();
             this.results.push(result);
         },
-        _onShowResultClick: function (index) {
+        _onShowResultClick: function(index) {
             //var extent = this.results[index].store.getInitialQuery().query.geometry.$intersects.getExtent();
             /*
-             * currently uses the extent of the moment the selection was made, not the extent of result features
-             */            
+             * currently uses the extent of the moment the selection was made, not the extent of selected features
+             */
             this._mapState.setExtent(this.results[index].extent);
             this.postEvent(this.results[index]);
         },
-        _clearResults: function () {
-            this.results = [];
+        _clearResults: function(){
+            this.results = [];            
         }
     });
 });

@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-define([
-    ".",
-    "./ResultOverviewWidgetFactory",
-    "./MultipleSelectionWidgetFactory",
-    "./MultipleSelectionWidget",
-    "./ResultOverviewWidget",
-    "./SelectionEventDetector",
-    "ct/tools/Tool"
-], {});
+define({
+    root: {
+        bundleName: "Selection History",
+        bundleDescription: "This bundle memorizes selections",
+        toolName: "SelectionHistory-Tool",
+        toolTooltip: "show previous selections",
+        showResults: "show results",
+        windowTitle: "past selections",
+        emptyLabel: "no selections made yet"       
+    },
+    de: true
+});

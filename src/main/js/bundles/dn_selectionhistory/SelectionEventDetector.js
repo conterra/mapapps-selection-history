@@ -24,7 +24,7 @@ define([
 ], function (declare, d_lang) {
     return declare([], {
         handleEvent: function (evt) { 
-            if(evt.getProperties().postedBy && evt.getProperties().postedBy === "dn_resultoverview"){
+            if(evt.getProperties().postedBy && evt.getProperties().postedBy === "dn_selectionhistory"){
                 return;
             }
             if(evt.getProperties().store.idList.length < 1){
