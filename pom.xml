@@ -480,9 +480,9 @@
         </plugins>
     </build>
     <scm>
-        <connection>scm:git:https://github.com/conterra/mapapps-result-overview.git</connection>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-result-overview.git</developerConnection>
-        <url>https://github.com/conterra/mapapps-result-overview</url>
+        <connection>scm:git:https://github.com/conterra/mapapps-selection-history.git</connection>
+        <developerConnection>scm:git:https://github.com/conterra/mapapps-selection-history.git</developerConnection>
+        <url>https://github.com/conterra/mapapps-selection-history</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
