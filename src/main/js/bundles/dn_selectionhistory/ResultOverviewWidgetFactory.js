@@ -35,41 +35,36 @@ define([
             this.inherited(arguments);
             return this.widget;
         },
-        activate: function () {            
+        activate: function () {
             this.inherited(arguments);
-            var i18n = this._i18n.get();            
+            var i18n = this._i18n.get();
             var widget = this.widget = new ResultOverviewWidget({
                 source: this,
                 i18n: i18n
             });
             widget.resize();
         },
-        /*         
-         * TODO: attach dataview to resultcenter instead of posting new event
-         */
-        postEvent: function (properties) {            
-            this._eventService.postEvent("ct/selection/SELECTION_END",
-                    {                        
-                        source: properties.source,
-                        store: properties.store,
-                        postedBy: "dn_selectionhistory"
-                    }
-            );
+        handleOnDatasourceChanged: function (evt) {
+            if (!evt.datasource || evt.datasource.postedBy === "dn_selectionhistory" || evt.datasource.idList.length < 1) {
+                return;
+            }
+            this.widget.addResult(evt.datasource);
         },
-        _addResult: function (result){            
+        _addResult: function (result) {
             result.extent = this._mapState.getExtent();
+            result.postedBy = "dn_selectionhistory";
             this.results.push(result);
         },
-        _onShowResultClick: function(index) {
+        _onShowResultClick: function (index) {
             //var extent = this.results[index].store.getInitialQuery().query.geometry.$intersects.getExtent();
             /*
              * currently uses the extent of the moment the selection was made, not the extent of selected features
              */
             this._mapState.setExtent(this.results[index].extent);
-            this.postEvent(this.results[index]);
+            this.dataModel.setDatasource(this.results[index]);
         },
-        _clearResults: function(){
-            this.results = [];            
+        _clearResults: function () {
+            this.results = [];
         }
     });
 });

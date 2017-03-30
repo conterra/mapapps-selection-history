@@ -1,6 +1,6 @@
 {
   "properties": {
-    "title": "result overview sample",
+    "title": "selection history sample",
     "amdPackages": "apprt@^3.3.0"
   },
   "load": {

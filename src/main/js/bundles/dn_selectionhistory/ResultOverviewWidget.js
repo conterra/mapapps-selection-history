@@ -64,16 +64,16 @@ define([
             this.source._onShowResultClick(index);
         },
         addResult: function (result) {
-            this.source._addResult(result);            
-            var time = result.Timestamp.toLocaleTimeString();
-            var name = result.store.getMetadata().title ? result.store.getMetadata().title : "";
+            this.source._addResult(result);
+            var time = new Date().toLocaleTimeString();
+            var name = result.getMetadata().title ? result.getMetadata().title : "";
             var index = this.source.results.length - 1;
             var option = {label: time + " " + name, value: index};
             this._select.addOption(option);
         },
-        clearResults: function(){
+        clearResults: function () {
             this._select._setDisplay("");
-            this._select.removeOption(this._select.getOptions());            
+            this._select.removeOption(this._select.getOptions());
             this.source._clearResults();
         }
     });

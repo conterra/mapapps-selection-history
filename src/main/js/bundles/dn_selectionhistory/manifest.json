@@ -9,17 +9,9 @@
         {
             "name": "map",
             "version": "^3.3.0"
-        },
-        {
-            "name": "agssearch",
-            "version": "^3.3.0"
-        },
+        },        
         {
             "name": "resultcenter",
-            "version": "^3.3.0"
-        },
-        {
-            "name": "selection",
             "version": "^3.3.0"
         }
     ],
@@ -60,11 +52,7 @@
             },
             "instanceFactory": true,
             "immediate": true,
-            "references": [
-                {
-                    "name": "_eventService",
-                    "providing": "ct.framework.api.EventService"
-                },
+            "references": [                
                 {
                     "name": "_mapState",
                     "providing": "ct.mapping.map.MapState",
@@ -78,20 +66,13 @@
                 {
                     "name": "_windowManager",
                     "providing": "ct.framework.api.WindowManager"
-                }
-            ]
-        },
-        {
-            "name": "SelectionEventDetector",
-            "provides": "ct.framework.api.EventHandler",
-            "propertiesConstructor": true,
-            "properties": {
-                "Event-Topics": ["ct/selection/SELECTION_END"]
-            },
-            "references": [
+                },                
                 {
-                    "name": "resultOverviewWidget",
-                    "providing": "dn_selectionhistory.ResultOverviewWidgetFactory"
+                    "name": "dataModel",
+                    "providing": "ct.resultcenter.DataModel",
+                    "connect": {
+                        "onDatasourceChanged": "handleOnDatasourceChanged"
+                    }
                 }
             ]
         },

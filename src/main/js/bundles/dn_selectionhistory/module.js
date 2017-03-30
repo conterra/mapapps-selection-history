@@ -17,6 +17,5 @@ define([
     ".",
     "./ResultOverviewWidgetFactory",
     "./ResultOverviewWidget",
-    "./SelectionEventDetector",
     "ct/tools/Tool"
 ], {});
