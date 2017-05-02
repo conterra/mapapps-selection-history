@@ -85,8 +85,8 @@
             "propertiesConstructor": true,
             "properties": {
                 "id": "resultOverviewTool",
-                "toolRole": "resultcenter",
-                "title": "${toolName}",
+                "toolRole": ["toolset","resultcenter"],
+                "title": "${toolTooltip}",
                 "tooltip": "${toolTooltip}",
                 "togglable": true,
                 "iconClass": "icon-add-symbol"
