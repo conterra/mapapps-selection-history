@@ -2,9 +2,6 @@
 
 This bundle provides an additional button in the Result Center to show results of previous selections.
 
-### Sample App ###
-https://demos.conterra.de/mapapps/resources/apps/downloads_selection_history/index.html
-
 ### Define the mapapps remote base
 Before you can run the project you have to define the mapapps.remote.base property in the pom.xml-file:
 `<mapapps.remote.base>http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%</mapapps.remote.base>`
